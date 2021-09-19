@@ -1,8 +1,8 @@
 using System;
 
-namespace DIO.Series.Classes
+namespace DIO.Series.Models
 {
-    public class Serie : SerieBase
+    public class Serie : EntidadeBase
     {
 
         public Genero Genero { get; set; }
