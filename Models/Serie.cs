@@ -23,7 +23,8 @@ namespace DIO.Series.Models
 
         public override string ToString()
         {
-            return "Gênero: " + Genero + Environment.NewLine +
+            return "Id: " + Id + Environment.NewLine +
+                    "Gênero: " + Genero + Environment.NewLine +
                     "Titulo: " + Titulo + Environment.NewLine +
                     "Sinopse: " + Sinopse + Environment.NewLine +
                     "Ano de Lançamento: " + AnoLancamento + Environment.NewLine;

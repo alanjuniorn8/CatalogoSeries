@@ -29,8 +29,12 @@ namespace DIO.Series.Repositories
         {
             Serie serie = Series.Find(s => s.Id == id);
             if (serie == null) return false;
-            
-            serie = serieAtualizada;
+
+            serie.Genero = serieAtualizada.Genero;
+            serie.Titulo = serieAtualizada.Titulo;
+            serie.Sinopse = serieAtualizada.Sinopse;
+            serie.AnoLancamento = serieAtualizada.AnoLancamento;
+
             return true;
         }
 

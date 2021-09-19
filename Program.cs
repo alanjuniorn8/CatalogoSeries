@@ -48,7 +48,7 @@ namespace DIO.Series
 
                     case 4:
 
-                        //AtualizarSerie();
+                        AtualizarSerie();
                         break;
 
                     case 5: 
@@ -61,6 +61,9 @@ namespace DIO.Series
                         InvalidOPeration();
                         break;
                 }
+
+                userChoice = GetUserInput();
+
             }
         }
 
@@ -101,6 +104,54 @@ namespace DIO.Series
 
         private static void  CadastrarSerie()
         {   
+            var novaSerie = PopulaSerie();
+
+            var serieCriada = repository.Create(novaSerie);
+            Console.WriteLine("Série criada com sucesso!");
+            Console.WriteLine(serieCriada);
+
+        }
+        
+        private static void AtualizarSerie()
+        {
+            Console.WriteLine("Informe o Id da Série que deseja atualizar: ");
+            
+
+            try
+            {
+
+                var idInput = Guid.Parse(Console.ReadLine());
+
+                if(repository.GetById(idInput) != null){
+                    
+                    var serieAtualizada = PopulaSerie();
+                    var sucesso = repository.Update(idInput, serieAtualizada);
+                    
+                    if(sucesso)
+                    {
+                        Console.WriteLine("Serie atualizada com sucesso!");
+                        return;
+                    } 
+
+                    Console.WriteLine("Ocorreu um erro, tente novamente");
+                    return;
+
+                }
+                else
+                {
+                    Console.WriteLine("Série não encontrada!");
+                    return;
+                }
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("O Id informedo não é válido");
+            } 
+            
+        }
+
+        private static Serie PopulaSerie()
+        {
             List<int> generosDisponiveis = new List<int>();
             Console.WriteLine("Gêneros:");
             foreach(int i in Enum.GetValues(typeof(Genero)))
@@ -138,7 +189,7 @@ namespace DIO.Series
 
             int anoInput = validaAno();
 
-            Serie novaSerie = new Serie
+            Serie serie = new Serie
             (
                 genero: (Genero)generoInput,
                 titulo: tituloInput,
@@ -146,13 +197,10 @@ namespace DIO.Series
                 anoLancamento: anoInput
             );
 
-            var serieCriada = repository.Create(novaSerie);
-            Console.WriteLine("Série criada com sucesso!");
-            Console.WriteLine(serieCriada);
-
+            return serie;
         }
 
-        static int validaAno()
+        private static int validaAno()
         {
             Console.WriteLine("Insira o ano(número) de lançamento da série: ");
             int anoInput = 0;
