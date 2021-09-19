@@ -38,7 +38,7 @@ namespace DIO.Series
 
                     case 2:
 
-                        //VisualizarSerie();
+                        VisualizarSerie();
                         break;
 
                     case 3:
@@ -53,12 +53,12 @@ namespace DIO.Series
 
                     case 5: 
 
-                        //ExcluirSerie();
+                        ExcluirSerie();
                         break;
 
                     default:
 
-                        InvalidOPeration();
+                        Console.WriteLine("Por favor escolha uma das opções listada");
                         break;
                 }
 
@@ -87,6 +87,11 @@ namespace DIO.Series
             Console.WriteLine("Opção escolhida não existe!");
         }
 
+        private static void InvalidId()
+        {
+            Console.WriteLine("O Id informado não é válido");
+        }
+
         private static void  ListarSeries()
         {
             var series = repository.GetAll();
@@ -102,6 +107,31 @@ namespace DIO.Series
             }
         }
 
+        private static void VisualizarSerie()
+        {
+             try
+            {
+                Console.WriteLine("Informe o Id da Série que deseja visualizar: ");
+                var idInput = Guid.Parse(Console.ReadLine());
+
+                var serieRetornada = repository.GetById(idInput);
+
+                if (serieRetornada == null) 
+                {
+                    Console.WriteLine("Série não encontrada!");
+                    return;
+                }
+
+                Console.WriteLine(serieRetornada);
+                
+
+            }
+            catch (FormatException e)
+            {
+                InvalidId();
+            } 
+        }
+
         private static void  CadastrarSerie()
         {   
             var novaSerie = PopulaSerie();
@@ -110,7 +140,9 @@ namespace DIO.Series
             Console.WriteLine("Série criada com sucesso!");
             Console.WriteLine(serieCriada);
 
+
         }
+        
         
         private static void AtualizarSerie()
         {
@@ -145,9 +177,24 @@ namespace DIO.Series
             }
             catch (FormatException e)
             {
-                Console.WriteLine("O Id informedo não é válido");
+                InvalidId();
             } 
             
+        }
+
+        private static void ExcluirSerie()
+        {
+            Console.WriteLine("Digite o id da Série que deseja excluir: ");
+            try
+            {
+                var idInput = Guid.Parse(Console.ReadLine());
+
+                if (repository.Delete(idInput)) Console.WriteLine("A Série foi excluida do catalógo!");
+            }
+            catch (FormatException e)
+            {
+                InvalidId();
+            }
         }
 
         private static Serie PopulaSerie()
@@ -162,24 +209,25 @@ namespace DIO.Series
 
             Console.WriteLine("Escolha um Gênero conforme as opçoẽs acima: ");
             int generoInput = 0;
-            try{
-                
-                generoInput= Int32.Parse(Console.ReadLine());
-                
-            }
-            catch (FormatException e)
-            {
-                InvalidOPeration();
-                CadastrarSerie();
-            }
 
-            var generoExiste = generosDisponiveis.Find(g => g.Equals(generoInput)) != null;
+            while(true){
+                try{
+                    
+                    generoInput= Int32.Parse(Console.ReadLine());
+                    var generoExiste = generosDisponiveis.Find(g => g.Equals(generoInput)) != 0;
 
-            if (!generoExiste)
-            {
-                Console.WriteLine("Selecione um Gênero existente");
-                CadastrarSerie();
+                    if (generoExiste)  break;
+                        
+                    Console.WriteLine("Selecione um Gênero existente");
+                                  
+                }
+                catch (FormatException e)
+                {
+                    InvalidOPeration();
+                }
+                
             }
+            
 
             Console.WriteLine("Insira Título da Série: ");
             string tituloInput = Console.ReadLine();
@@ -205,13 +253,17 @@ namespace DIO.Series
             Console.WriteLine("Insira o ano(número) de lançamento da série: ");
             int anoInput = 0;
 
-            try{
-                anoInput = Int32.Parse(Console.ReadLine());
-            }
-            catch (FormatException e)
+            while(true)
             {
-                Console.WriteLine("Selecione um ano no formato numérico");
-                validaAno();
+                try
+                {
+                    anoInput = Int32.Parse(Console.ReadLine());
+                    break;
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Selecione um ano no formato numérico");
+                }
             }
 
             return anoInput;
