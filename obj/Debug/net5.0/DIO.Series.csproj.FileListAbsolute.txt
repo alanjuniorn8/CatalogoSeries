@@ -1,0 +1,16 @@
+/home/alan/VScode-workspace/DIO.Series/bin/Debug/net5.0/DIO.Series
+/home/alan/VScode-workspace/DIO.Series/bin/Debug/net5.0/DIO.Series.deps.json
+/home/alan/VScode-workspace/DIO.Series/bin/Debug/net5.0/DIO.Series.runtimeconfig.json
+/home/alan/VScode-workspace/DIO.Series/bin/Debug/net5.0/DIO.Series.runtimeconfig.dev.json
+/home/alan/VScode-workspace/DIO.Series/bin/Debug/net5.0/DIO.Series.dll
+/home/alan/VScode-workspace/DIO.Series/bin/Debug/net5.0/ref/DIO.Series.dll
+/home/alan/VScode-workspace/DIO.Series/bin/Debug/net5.0/DIO.Series.pdb
+/home/alan/VScode-workspace/DIO.Series/obj/Debug/net5.0/DIO.Series.csproj.AssemblyReference.cache
+/home/alan/VScode-workspace/DIO.Series/obj/Debug/net5.0/DIO.Series.GeneratedMSBuildEditorConfig.editorconfig
+/home/alan/VScode-workspace/DIO.Series/obj/Debug/net5.0/DIO.Series.AssemblyInfoInputs.cache
+/home/alan/VScode-workspace/DIO.Series/obj/Debug/net5.0/DIO.Series.AssemblyInfo.cs
+/home/alan/VScode-workspace/DIO.Series/obj/Debug/net5.0/DIO.Series.csproj.CoreCompileInputs.cache
+/home/alan/VScode-workspace/DIO.Series/obj/Debug/net5.0/DIO.Series.dll
+/home/alan/VScode-workspace/DIO.Series/obj/Debug/net5.0/ref/DIO.Series.dll
+/home/alan/VScode-workspace/DIO.Series/obj/Debug/net5.0/DIO.Series.pdb
+/home/alan/VScode-workspace/DIO.Series/obj/Debug/net5.0/DIO.Series.genruntimeconfig.cache
